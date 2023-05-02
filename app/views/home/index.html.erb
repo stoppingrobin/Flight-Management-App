@@ -1,0 +1,19 @@
+<div class="row">
+  <% @flights.each do |flight| %>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Flight <%= flight.flight_id %></h5>
+          <p class="card-text">
+            Departure Airport: <%= flight.departure_airport.name %> (<%= flight.departure_airport.iata %>)<br>
+            Arrival Airport: <%= flight.arrival_airport.name %> (<%= flight.arrival_airport.iata %>)<br>
+            Departure Date and Hour: <%= flight.departure.strftime('%Y-%m-%d %H:%M') %><br>
+            Arrival Date and Hour: <%= (flight.departure + flight.duration.minutes).strftime('%Y-%m-%d %H:%M') %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= will_paginate @flights %>
