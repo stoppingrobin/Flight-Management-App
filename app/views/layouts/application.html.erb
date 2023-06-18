@@ -13,6 +13,17 @@
   </head>
 
   <body>
+  <ul>
+    <% if client_signed_in? %>
+      <li>Hi, <%= current_client.email %></li>
+      <li>Mes réservations</li>
+      <li><%= link_to "Déconnexion", destroy_client_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Connexion", new_client_session_path %></li>
+      <li><%= link_to "Inscription", new_client_registration_path %></li>
+    <% end %>
+
+  </ul>
     <%= yield %>
   </body>
 </html>

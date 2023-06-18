@@ -1,0 +1,8 @@
+<h1>Reservation Successful</h1>
+<p>Your reservation has been created with reference: <%= @reservation.pnr %></p>
+<%= form_tag({controller: "reservation", action: "delete"}, method: "post") do %>
+  <%= hidden_field_tag :id, @reservation.id %>
+  <%= hidden_field_tag '_method', 'delete' %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= submit_tag "Delete Reservation", class: "btn btn-danger" %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_124109) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_141734) do
   create_table "airports", force: :cascade do |t|
     t.string "iata"
     t.string "name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_124109) do
     t.integer "economy_seats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "flight_id"
+    t.integer "flight_company_id"
     t.index ["arrival_airport_id"], name: "index_flights_on_arrival_airport_id"
     t.index ["departure_airport_id"], name: "index_flights_on_departure_airport_id"
   end
@@ -53,6 +53,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_124109) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "flight_id"
+    t.integer "client_id"
+    t.index ["client_id"], name: "index_reservations_on_client_id"
+    t.index ["flight_id"], name: "index_reservations_on_flight_id"
   end
 
+  add_foreign_key "reservations", "clients"
+  add_foreign_key "reservations", "flights"
 end

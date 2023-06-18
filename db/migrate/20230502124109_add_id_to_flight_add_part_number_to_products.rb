@@ -1,5 +1,5 @@
 class AddIdToFlightAddPartNumberToProducts < ActiveRecord::Migration[7.0]
   def change
-    add_column :flights, :flight_id, :integer
+    add_column :flights, :flight_company_id, :integer
   end
 end

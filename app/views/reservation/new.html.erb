@@ -1,0 +1,11 @@
+<%= form_with model: @reservation, url: :new_reservation_creation, method: :post, local: true do |form| %>
+  <%= form.hidden_field :flight_id, value: @flight.id %>
+  <!-- Add other reservation fields here -->
+  <%= form.radio_button :category, "1", checked: true, id: "second" %>
+  <%= form.label :seat_category_second, "Seconde Classe", for: "second" %>
+  <%= form.radio_button :category, "0", id: "first" %>
+  <%= form.label :seat_category_first, "Premiere Classe", for: "first" %>
+  <%= form.number_field :nb_seats, min: 1, max: 99, step: 1, value: 1 %>
+  <%= form.submit 'Submit Reservation', class: 'btn btn-primary' %>
+<% end %>
+

@@ -3,13 +3,14 @@
     <div class="col-md-4">
       <div class="card mb-3">
         <div class="card-body">
-          <h5 class="card-title">Flight <%= flight.flight_id %></h5>
+          <h5 class="card-title">Flight <%= flight.flight_company_id %></h5>
           <p class="card-text">
             Departure Airport: <%= flight.departure_airport.name %> (<%= flight.departure_airport.iata %>)<br>
             Arrival Airport: <%= flight.arrival_airport.name %> (<%= flight.arrival_airport.iata %>)<br>
             Departure Date and Hour: <%= flight.departure.strftime('%Y-%m-%d %H:%M') %><br>
             Arrival Date and Hour: <%= (flight.departure + flight.duration.minutes).strftime('%Y-%m-%d %H:%M') %>
           </p>
+          <%= button_to 'Book', new_reservations_path(flight_id: flight.id), method: :get, class: 'btn btn-primary' %>
         </div>
       </div>
     </div>

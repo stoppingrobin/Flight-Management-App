@@ -20,7 +20,7 @@ CSV.foreach(Rails.root.join('lib/flights.csv'), headers: true) do |flight|
   departure_airport = Airport.find_by iata: flight['departure_airport']
   arrival_airport = Airport.find_by iata: flight['arrival_airport']
   flight_obj = {
-    flight_id: flight['number'],
+    flight_company_id: flight['number'].to_i,
     departure: flight['departure_date'].to_datetime,
     duration: flight['duration'],
     departure_airport: departure_airport,

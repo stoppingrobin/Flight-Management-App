@@ -1,4 +1,4 @@
- number,"departure_airport","arrival_airport","business_class_seats","economy_class_seats","duration","departure_date"
+"number","departure_airport","arrival_airport","business_class_seats","economy_class_seats","duration","departure_date"
 "3004","LIL","NTE","111","419","224","2023-10-21T21:46:33.678Z"
 "9215","NCE","MPL","105","417","41","2023-07-28T23:30:11.844Z"
 "9994","MRS","ORY","102","400","332","2024-01-10T08:25:03.122Z"

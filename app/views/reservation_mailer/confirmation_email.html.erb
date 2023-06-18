@@ -1,0 +1,7 @@
+<p>Dear <%= @reservation.client.email %>,</p>
+
+<p>Your flight reservation has been confirmed.</p>
+<p>Reservation Reference: <%= @reservation.pnr %></p>
+<p>Flight Number: <%= @reservation.flight.flight_company_id %></p>
+
+<p>Thank you for booking with us!</p>

@@ -1,0 +1,15 @@
+<%= form_with url: create_reservation_path, method: :post, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :flight_id, "Select Flight" %>
+    <%= f.select :flight_id, options_from_collection_for_select(Flight.where('departure > ?', Time.now), :id, :flight_number), {}, {class: "form-control"} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :seat_type, "Seat Type" %>
+    <%= f.select :seat_type, options_for_select([['Economic', 'economic'], ['Business', 'business']]), {}, {class: "form-control"} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :passengers, "Number of Passengers" %>
+    <%= f.number_field :passengers, min: 1, max: 99, class: "form-control" %>
+  </div>
+  <%= f.submit 'Create Reservation', class: 'btn btn-primary' %>
+<% end %>
