@@ -10,7 +10,7 @@ class ReservationController < ActionController::Base
     # Generate a unique alphanumeric reference for the reservation
     loop do
       reservation.pnr = SecureRandom.alphanumeric(6).upcase
-      break unless Reservation.joins(:flight).where("reservations.pnr = ? AND flights.departure_date > ?", reservation.pnr, Time.now).exists?  # TODO vérif que sur resa a venir
+      break unless Reservation.exists?(pnr: reservation.pnr)
     end
 
     if reservation.save
