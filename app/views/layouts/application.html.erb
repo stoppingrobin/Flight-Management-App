@@ -13,18 +13,37 @@
   </head>
 
   <body>
-  <ul>
-    <% if client_signed_in? %>
-      <li><%= link_to "Accueil", "/" %></li>
-      <li>Hi, <%= current_client.email %></li>
-      <li><%= link_to "Mes réservations", reservation_history_path %></li>
-      <li><%= link_to "Déconnexion", destroy_client_session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to "Connexion", new_client_session_path %></li>
-      <li><%= link_to "Inscription", new_client_registration_path %></li>
-    <% end %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%= link_to "Accueil", "/", class: "navbar-brand" %>
 
-  </ul>
-    <%= yield %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <% if client_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Hi, #{current_client.email}", "#", class: "nav-link disabled" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Mes réservations", reservation_history_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Déconnexion", destroy_client_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Connexion", new_client_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Inscription", new_client_registration_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+  <%= yield %>
   </body>
 </html>
