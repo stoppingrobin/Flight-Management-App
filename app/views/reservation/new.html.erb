@@ -1,3 +1,9 @@
+<p class="card-text">
+  Departure Airport: <%= @flight.departure_airport.name %> (<%= @flight.departure_airport.iata %>)<br>
+  Arrival Airport: <%= @flight.arrival_airport.name %> (<%= @flight.arrival_airport.iata %>)<br>
+  Departure Date and Hour: <%= @flight.departure.strftime('%Y-%m-%d %H:%M') %><br>
+  Arrival Date and Hour: <%= (@flight.departure + @flight.duration.minutes).strftime('%Y-%m-%d %H:%M') %>
+</p>
 <%= form_with model: @reservation, url: :new_reservation_creation, method: :post, local: true do |form| %>
   <%= form.hidden_field :flight_id, value: @flight.id %>
   <!-- Add other reservation fields here -->

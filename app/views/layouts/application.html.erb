@@ -15,8 +15,9 @@
   <body>
   <ul>
     <% if client_signed_in? %>
+      <li><%= link_to "Accueil", "/" %></li>
       <li>Hi, <%= current_client.email %></li>
-      <li>Mes réservations</li>
+      <li><%= link_to "Mes réservations", reservation_history_path %></li>
       <li><%= link_to "Déconnexion", destroy_client_session_path, method: :delete %></li>
     <% else %>
       <li><%= link_to "Connexion", new_client_session_path %></li>

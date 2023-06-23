@@ -8,7 +8,7 @@
             Departure Airport: <%= flight.departure_airport.name %> (<%= flight.departure_airport.iata %>)<br>
             Arrival Airport: <%= flight.arrival_airport.name %> (<%= flight.arrival_airport.iata %>)<br>
             Departure Date and Hour: <%= flight.departure.strftime('%Y-%m-%d %H:%M') %><br>
-            Arrival Date and Hour: <%= (flight.departure + flight.duration.minutes).strftime('%Y-%m-%d %H:%M') %>
+            Arrival Date and Hour: <%= flight.arrival.strftime("%Y-%m-%d %H:%M")%>
           </p>
           <%= button_to 'Book', new_reservations_path(flight_id: flight.id), method: :get, class: 'btn btn-primary' %>
         </div>

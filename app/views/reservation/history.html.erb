@@ -1,0 +1,30 @@
+<h1>Your Reservations</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>PNR</th>
+    <th>Flight</th>
+    <th>Category</th>
+    <th>Seats</th>
+    <th>Departure airport</th>
+    <th>Arrival airport</th>
+    <th>Departure date</th>
+    <th>Flight duration</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @reservations.each do |reservation| %>
+    <tr>
+      <td><%= link_to reservation.pnr, reservations_path(reservation) %></td>
+      <td><%= reservation.flight.flight_company_id %></td>
+      <td><%= reservation.category_name%></td>
+      <td><%= reservation.nb_seats %></td>
+      <td><%= reservation.flight.departure_airport.name %> ( <%= reservation.flight.departure_airport.iata %> )</td>
+      <td><%= reservation.flight.arrival_airport.name %> ( <%= reservation.flight.arrival_airport.iata %> )</td>
+      <td><%= reservation.flight.departure.strftime("%Y-%m-%d %H:%M") %></td>
+      <td><%= reservation.flight.arrival.strftime("%Y-%m-%d %H:%M") %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

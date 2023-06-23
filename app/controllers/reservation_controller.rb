@@ -1,4 +1,7 @@
 class ReservationController < ActionController::Base
+  layout "application"
+  before_action :authenticate_client!
+
   def create
     # Create a new reservation with the form data
     reservation = Reservation.new(reservation_params)
@@ -6,8 +9,8 @@ class ReservationController < ActionController::Base
 
     # Generate a unique alphanumeric reference for the reservation
     loop do
-      reservation.pnr = SecureRandom.alphanumeric(6)
-      break unless Reservation.exists?(pnr: reservation.pnr)  # TODO vérif que sur resa a venir
+      reservation.pnr = SecureRandom.alphanumeric(6).upcase
+      break unless Reservation.joins(:flight).where("reservations.pnr = ? AND flights.departure_date > ?", reservation.pnr, Time.now).exists?  # TODO vérif que sur resa a venir
     end
 
     if reservation.save
@@ -43,6 +46,10 @@ class ReservationController < ActionController::Base
       flash["notice"] = "Couldn't delete booking'((("
       redirect_to({ controller: :home, action: :index})
     end
+  end
+
+  def history
+    @reservations = Reservation.where(client_id: current_client.id).paginate(page: params[:page], per_page: 10)
   end
 
   private
